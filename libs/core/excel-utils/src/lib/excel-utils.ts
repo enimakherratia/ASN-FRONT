@@ -1,5 +1,6 @@
 import * as XLSX from 'xlsx';
 import moment from 'moment';
+import {Product, ProductData} from "@myproject/core/api-types";
 
 // Function to replace negative prices with 0
 function replaceNegativePrices(prices: any): number[] {
@@ -31,9 +32,8 @@ export function formatDate(date: any): string {
 function deduceCategory(name: string): 'product' | 'equipment' {
   return name.toLowerCase().includes('equipment') ? 'equipment' : 'product';
 }
-
 // Function to read and parse the Excel file
-export function readExcelFile(file: File): Promise<any[]> {
+export function readExcelFile(file: File): Promise<Product[]> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (e: any) => {
@@ -43,9 +43,15 @@ export function readExcelFile(file: File): Promise<any[]> {
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-      // Filter out unwanted rows (e.g., header rows)
-      const filteredData = jsonData.filter((item: any) => {
-        return item.Name && item.Name !== "name" && item.UpdatedOn !== "updated_on";
+      // Filter out unwanted data (e.g., header rows)
+      const filteredData = (jsonData as ProductData[]).filter((item: ProductData) => {
+        // Check if UpdatedOn is a string and compare with "updated_on"
+        if (typeof item.UpdatedOn === 'string') {
+          return item.Name && item.Name !== "name" && item.UpdatedOn !== "updated_on";
+        }
+
+        // If UpdatedOn is not a string, you may skip the comparison
+        return item.Name && item.Name !== "name";
       });
 
       // Apply data transformation
@@ -57,12 +63,13 @@ export function readExcelFile(file: File): Promise<any[]> {
   });
 }
 
-// Function to transform and process the input data
-export function transformData(input: any[]): any[] {
+// Function to transform and process the data
+export function transformData(input: ProductData[]): Product[] {
   const uniqueNames = new Set(); // Ensure name uniqueness
 
   return input
-    .map((item: any) => {
+    .reverse() // Reverse the array to process the last occurrence first
+    .map((item: ProductData) => {
       // Check if the data is valid
       if (!item.Name || !item.UpdatedOn || !item.Prices) {
         return null;
@@ -72,7 +79,7 @@ export function transformData(input: any[]): any[] {
       const prices = replaceNegativePrices(item.Prices);
       const category = deduceCategory(item.Name);
 
-      // Ensure uniqueness of name
+      // Ensure name uniqueness
       if (uniqueNames.has(item.Name)) return null;
       uniqueNames.add(item.Name);
 
@@ -80,9 +87,9 @@ export function transformData(input: any[]): any[] {
         name: item.Name,
         updated_at: updatedAt,
         prices: prices,
-        rate: parseFloat(item['Rate %']) || 0,
+        rate: parseFloat(item['Rate %']?.toString()) || 0,
         category: category,
       };
     })
-    .filter(item => item !== null); // Filter out null items
+    .filter(item => item !== null) as Product[]; // Filter out null items and return an array of type Product
 }

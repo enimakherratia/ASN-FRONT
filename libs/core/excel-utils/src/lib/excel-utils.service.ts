@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { readExcelFile, transformData } from './excel-utils';
+import { readExcelFile } from './excel-utils';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +7,5 @@ import { readExcelFile, transformData } from './excel-utils';
 export class ExcelUtilsService {
   readFile(file: File): Promise<any[]> {
     return readExcelFile(file);
-  }
-
-  normalizeData(data: any[]): any[] {
-    return transformData(data);
   }
 }

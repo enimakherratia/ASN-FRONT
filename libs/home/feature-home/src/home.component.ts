@@ -1,16 +1,12 @@
 import {Component, ChangeDetectionStrategy, inject, effect, untracked, input} from '@angular/core';
-import { NgClass } from '@angular/common';
 import { HomeStore } from './home.store';
 import { ExcelUtilsService } from '@myproject/core/excel-utils';
-
 import { AuthStore } from '@myproject/auth/data-access';
-import {User} from "@myproject/core/api-types";
 
 @Component({
   selector: 'cdt-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [NgClass],
   providers: [HomeStore],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
