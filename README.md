@@ -3,9 +3,7 @@
 <img src="apps/amineTest/src/assets/nx-logo.png" alt="MyApp Example App" width="100"/>
 
 ## **Présentation**  
-**amineTest** est une application moderne. Elle est construite avec Angular, NgRx et NX en suivant les meilleures pratiques et standards de la communauté Angular.  
-
-L'application propose une gestion avancée des articles et des utilisateurs avec une API personnalisée, incluant des fonctionnalités comme l'authentification JWT, la gestion des articles et commentaires, ainsi que la possibilité de suivre d'autres utilisateurs.  
+**ASN-Test** est une application full-stack moderne construite avec Angular pour le frontend, NestJS pour le backend, et une base de données MongoDB pour le stockage des données. Elle permet d'importer des données depuis un fichier Excel, de les envoyer à un backend via un endpoint REST, puis de les stocker dans MongoDB en suivant des règles de normalisation.
 
 ## **Technologies et fonctionnalités clés**  
 ### **Modern Angular features**  
