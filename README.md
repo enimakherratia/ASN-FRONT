@@ -5,6 +5,9 @@
 ## **Présentation**  
 **ASN-Test** est une application full-stack moderne construite avec Angular pour le frontend, NestJS pour le backend, et une base de données MongoDB pour le stockage des données. Elle permet d'importer des données depuis un fichier Excel, de les envoyer à un backend via un endpoint REST, puis de les stocker dans MongoDB en suivant des règles de normalisation.
 
+### **Frontend : Angular et NgRx**  
+Cette section de l'application est dédiée au frontend, où Angular et NgRx sont utilisés pour la gestion de l'état et la performance du côté client.
+
 ## **Technologies et fonctionnalités clés**  
 ### **Modern Angular features**  
 ✔️ **Nouvelle syntaxe Angular** (Control Flow, Signal Inputs & Outputs, etc.)  
@@ -15,7 +18,7 @@
 
 ### **Fonctionnalités principales**  
 ✅ **Authentification JWT** (Connexion, Inscription, Déconnexion)  
-✅ **Chargement des données** depuis un fichier Excel.
+✅ **Chargement des données** depuis un fichier Excel.  
 ✅ **Normalisation** des données selon le format requis.
 
 ## **Architecture**  
@@ -38,6 +41,7 @@ Le projet est structuré en **monorepo** avec **NX**, facilitant la modularité 
 │   ├── ui
 │   │   ├── components
 ```
+
 ### **Organisation des librairies**  
 🔹 **Scope** : Définit le domaine d'utilisation (ex: `articles`, `auth`, `profile`, `core`)  
 🔹 **Type** : Spécifie le rôle (ex: `feature`, `data-access`, `ui`)  
@@ -46,7 +50,7 @@ Le projet est structuré en **monorepo** avec **NX**, facilitant la modularité 
 🔹 **ui** : Composants réutilisables et présentations  
 
 ## **Lazy Loading et Routage**  
-L'application utilise le **Lazy Loading** pour améliorer les performances.  
+L'application utilise le **Lazy Loading** pour améliorer les performances.
 
 ```typescript
 {
@@ -69,10 +73,11 @@ L'application utilise le **Lazy Loading** pour améliorer les performances.
 ```
 
 ## **Bonnes pratiques adoptées**  
-✅ **Séparation claire entre composants intelligents (smart) et présentiels**   
+✅ **Séparation claire entre composants intelligents (smart) et présentiels**  
 ✅ **Conformité aux recommandations de la communauté Angular**  
 
-Voici le texte avec la commande `npm install` ajoutée pour installer les dépendances nécessaires avant de lancer les autres commandes :
+### **Créer un compte pour la première fois**  
+Pour se connecter à l'application pour la première fois, vous devez créer un compte via l'interface de connexion. Cela vous permettra de vous inscrire et de vous connecter ensuite avec vos identifiants.
 
 ---
 
@@ -96,7 +101,11 @@ nx run-many -t lint
 Avant d'exécuter les autres commandes, assurez-vous d'avoir installé les dépendances :  
 ```bash
 npm install
-```
 
 
+## **Backend**  
+Le backend de l'application est disponible sur [GitHub - ASN-BACK](https://github.com/enimakherratia/ASN-BACK).
 
+---
+
+Cela inclut maintenant le lien vers le backend dans la section appropriée.
