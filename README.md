@@ -15,10 +15,8 @@
 
 ### **Fonctionnalités principales**  
 ✅ **Authentification JWT** (Connexion, Inscription, Déconnexion)  
-✅ **CRUD Articles et Commentaires**  
-✅ **Pagination et gestion des favoris**  
-✅ **Suivi des utilisateurs et profils personnalisés**  
-✅ **Rendu Markdown des articles**  
+✅ **Chargement des données** depuis un fichier Excel.
+✅ **Normalisation** des données selon le format requis.
 
 ## **Architecture**  
 Le projet est structuré en **monorepo** avec **NX**, facilitant la modularité et la scalabilité.  
@@ -26,11 +24,6 @@ Le projet est structuré en **monorepo** avec **NX**, facilitant la modularité 
 📂 **Structure des dossiers**  
 ```
 ├── libs
-│   ├── articles
-│   │   ├── data-access
-│   │   ├── feature-article-edit
-│   │   ├── feature-article
-│   │   ├── feature-articles-list
 │   ├── auth
 │   │   ├── data-access
 │   │   ├── feature-auth
@@ -39,9 +32,9 @@ Le projet est structuré en **monorepo** avec **NX**, facilitant la modularité 
 │   │   ├── error-handler
 │   │   ├── http-client
 │   │   ├── forms
-│   ├── profile
+│   ├── Home
 │   │   ├── data-access
-│   │   ├── feature-profile
+│   │   ├── feature-home
 │   ├── ui
 │   │   ├── components
 ```
@@ -69,45 +62,41 @@ L'application utilise le **Lazy Loading** pour améliorer les performances.
   loadComponent: () => import('@amineTest/auth/feature-auth').then((m) => m.RegisterComponent),
 },
 {
-  path: 'article',
-  loadChildren: () => import('@amineTest/articles/article').then((m) => m.ARTICLE_ROUTES),
-},
-{
   path: 'settings',
   loadComponent: () =>
     import('@amineTest/settings/feature-settings').then((m) => m.SettingsComponent),
 },
-{
-  path: 'editor',
-  loadChildren: () => import('@amineTest/articles/article-edit').then((m) => m.ARTICLE_EDIT_ROUTES),
-  canActivate: [authGuard],
-},
-{
-  path: 'profile',
-  loadChildren: () => import('@amineTest/profile/feature-profile').then((m) => m.PROFILE_ROUTES),
-},
 ```
 
 ## **Bonnes pratiques adoptées**  
-✅ **Séparation claire entre composants intelligents (smart) et présentiels (dumb)**  
-✅ **Évitement des dépendances inutiles pour simplifier la maintenance et les migrations Angular**  
+✅ **Séparation claire entre composants intelligents (smart) et présentiels**   
 ✅ **Conformité aux recommandations de la communauté Angular**  
+
+Voici le texte avec la commande `npm install` ajoutée pour installer les dépendances nécessaires avant de lancer les autres commandes :
+
+---
 
 ## **Commandes utiles**  
 🛠 **Démarrer l'application**  
 ```bash
 npm run start
 ```
+
 🧪 **Exécuter les tests unitaires**  
 ```bash
 nx run-many -t test
 ```
+
 📏 **Linting**  
 ```bash
 nx run-many -t lint
 ```
 
-## **Conclusion**  
-**amineTest** est une application complète et moderne, mettant en avant les meilleures pratiques Angular et une architecture scalable grâce à **NX et NgRx**. 🚀  
+📦 **Installer les dépendances**  
+Avant d'exécuter les autres commandes, assurez-vous d'avoir installé les dépendances :  
+```bash
+npm install
+```
+
 
 
