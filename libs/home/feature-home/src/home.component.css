@@ -1,0 +1,41 @@
+.nav-link {
+  cursor: pointer;
+}
+
+.tag-pill {
+  cursor: pointer;
+}
+
+
+.container.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.w100{
+  width: 100%
+}
+
+.upload-container input,
+.upload-container button {
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 300px; /* Controls the max width of the input and button */
+}
+
+.alert {
+  width: 100%;
+  margin-top: 15px;
+}

@@ -1,0 +1,27 @@
+<div class="home-page">
+  <div class="banner">
+    <div class="container">
+      <h1 class="logo-font">ASN-Test</h1>
+      <p>A platform to showcase your technical.</p>
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row justify-content-center">
+      <div class="text-center w100"> <!-- Added text-center here -->
+        <div class="upload-container">
+          <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" />
+          <button class="btn btn-primary mt-2" (click)="handleFileUpload()">Upload Excel</button>
+        </div>
+      </div>
+
+      <!-- Conditionally display the success message if dataSaved is true -->
+
+      @if (dataSaved()) {
+      <div class="alert alert-success w100">
+       Data has been successfully saved!
+     </div>
+      }
+    </div>
+  </div>
+</div>

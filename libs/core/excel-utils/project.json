@@ -1,0 +1,21 @@
+{
+  "name": "core-excel-utils",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/core/excel-utils/src",
+  "prefix": "cdt",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/core/excel-utils"],
+      "options": {
+        "jestConfig": "libs/core/excel-utils/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": []
+}

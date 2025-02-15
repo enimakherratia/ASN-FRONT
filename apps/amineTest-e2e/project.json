@@ -1,0 +1,27 @@
+{
+  "name": "amineTest-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/amineTest-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/amineTest-e2e/cypress.config.ts",
+        "devServerTarget": "amineTest:serve",
+        "tsConfig": "apps/amineTest-e2e/tsconfig.e2e.json",
+        "testingType": "e2e"
+      }
+    },
+    "configurations": {
+      "production": {
+        "devServerTarget": "amineTest:serve:production"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "prefix": "app"
+}

@@ -1,0 +1,94 @@
+{
+  "name": "amineTest",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@nx/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/amineTest/src",
+  "prefix": "cdt",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
+      "options": {
+        "outputPath": "dist/apps/amineTest",
+        "index": "apps/amineTest/src/index.html",
+        "main": "apps/amineTest/src/main.ts",
+        "tsConfig": "apps/amineTest/tsconfig.app.json",
+        "assets": ["apps/amineTest/src/favicon.ico", "apps/amineTest/src/assets", "apps/amineTest/src/netlify.toml"],
+        "styles": ["apps/amineTest/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/amineTest/src/environments/environment.ts",
+              "with": "apps/amineTest/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "amineTest:build:production"
+        },
+        "development": {
+          "buildTarget": "amineTest:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "amineTest:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "apps/amineTest/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/apps/amineTest"]
+    }
+  }
+}
