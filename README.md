@@ -1,4 +1,4 @@
-# **Amine-Test - Application Angular avec NgRx et NX**  
+# **ASN-Test - Application Angular avec NgRx et NX**  
 
 <img src="apps/amineTest/src/assets/nx-logo.png" alt="MyApp Example App" width="100"/>
 
